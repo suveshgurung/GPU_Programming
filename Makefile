@@ -17,6 +17,10 @@ matrix_transpose: matrix_transpose.cu
 	mkdir -p $(OUT_DIR)
 	$(CC) -o $(OUT_DIR)/matrix_transpose matrix_transpose.cu
 
+vector_multiplication: vector_multiplication.cu
+	mkdir -p $(OUT_DIR)
+	$(CC) -o $(OUT_DIR)/vector_multiplication vector_multiplication.cu
+
 .PHONY: clean
 clean:
 	rm -rf $(OUT_DIR)
