@@ -4,10 +4,6 @@
 #include <cuda.h>
 
 __global__ void matrix_transpose(int **matrix, int **transpose_matrix, int m, int n) {
-	// printf("blockDim.x: %d\n", blockDim.x);
-	// printf("blockDim.y: %d\n", blockDim.y);
-	// printf("blockIdx.x: %d\n", blockIdx.x);
-	// printf("blockIdx.y: %d\n", blockIdx.y);
 	int row = threadIdx.x;
 	int col = threadIdx.y;
 	transpose_matrix[col][row] = matrix[row][col];
@@ -51,8 +47,8 @@ int main(int argc, char *argv[]) {
 	}
 	cudaMemcpy(kernel_transpose_matrix, host_kernel_transpose_matrix, n * sizeof(int *), cudaMemcpyHostToDevice);
 	
-	printf("Enter the elements of the matrix:\n");
 	for (int r = 0; r < m; r++) {
+		printf("Enter elements of the row %d:\n", r);
 		for (int c = 0; c < n; c++) {
 			scanf("%d", &matrix[r][c]);
 		}
@@ -74,6 +70,7 @@ int main(int argc, char *argv[]) {
 	for (int i = 0; i < n; i++) {
 		transpose_matrix[i] = (int *)malloc(m * sizeof(int));
 	}
+	
 	dim3 block(m, n, 1);
 	matrix_transpose<<<1, block>>>(kernel_matrix, kernel_transpose_matrix, m, n);
 	for (int i = 0; i < n; i++) {
