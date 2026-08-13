@@ -21,6 +21,10 @@ vector_multiplication: vector_multiplication.cu
 	mkdir -p $(OUT_DIR)
 	$(CC) -o $(OUT_DIR)/vector_multiplication vector_multiplication.cu
 
+strided_dot_product: strided_dot_product.cu
+	mkdir -p $(OUT_DIR)
+	$(CC) -o $(OUT_DIR)/strided_dot_product strided_dot_product.cu
+
 .PHONY: clean
 clean:
 	rm -rf $(OUT_DIR)
