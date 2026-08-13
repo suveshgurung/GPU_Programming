@@ -25,6 +25,10 @@ strided_dot_product: strided_dot_product.cu
 	mkdir -p $(OUT_DIR)
 	$(CC) -o $(OUT_DIR)/strided_dot_product strided_dot_product.cu
 
+matrix_kernel_multiplication: matrix_kernel_multiplication.cu
+	mkdir -p $(OUT_DIR)
+	$(CC) -o $(OUT_DIR)/matrix_kernel_multiplication matrix_kernel_multiplication.cu
+
 .PHONY: clean
 clean:
 	rm -rf $(OUT_DIR)
